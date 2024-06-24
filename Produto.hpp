@@ -1,30 +1,32 @@
 #ifndef PRODUTO_HPP
 #define PRODUTO_HPP
 
-#include <iostream>
 #include <string>
 
-using namespace std;
+class Produto {
+public:
+    Produto(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento);
 
-class Produto{
+    int acessoID() const;
+    std::string acessoNOME() const;
+    std::string acessoMARCA() const;
+    double acessoPRECO() const;
+    std::string acessoFORNECEDOR() const;
+    char acessoSETOR() const;
 
-    public:
-        Produto(int _id, string _nome, string _marca, double _preco, string _fornecedor, char _setorArmazenamento);
-        void atualizarInfo(int id, auto info);
-        int acessoID();
-        string acessoNOME();
-        string acessoMARCA();
-        double acessoPRECO();
-        string acessoFORNECEDOR();
-        char acessoSETOR();
-    
-    private:
-        int _id;
-        string _nome;
-        string _marca;
-        double _preco;
-        string _fornecedor; 
-        char _setorArmazenamento;   
+    void setNome(const std::string& nome);
+    void setMarca(const std::string& marca);
+    void setPreco(double preco);
+    void setFornecedor(const std::string& fornecedor);
+    void setSetor(char setorArmazenamento);
+
+private:
+    int _id;
+    std::string _nome;
+    std::string _marca;
+    double _preco;
+    std::string _fornecedor;
+    char _setorArmazenamento;
 };
 
-#endif
+#endif // PRODUTO_HPP
