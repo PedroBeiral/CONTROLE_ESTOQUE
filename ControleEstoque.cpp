@@ -1,8 +1,10 @@
 #include "ControleEstoque.hpp"
 #include <iostream>
 
+// Construtor que inicializa o controle de estoque com o nome do arquivo de banco de dados
 ControleEstoque::ControleEstoque(const std::string& nomeArquivo) : banco(nomeArquivo) {}
 
+// Adiciona um produto ao estoque
 void ControleEstoque::adicionaProduto(const Produto& produto) {
     if (banco.adicionaProduto(produto)) {
         std::cout << "Produto adicionado com sucesso!" << std::endl;
@@ -11,6 +13,7 @@ void ControleEstoque::adicionaProduto(const Produto& produto) {
     }
 }
 
+// Remove um produto do estoque pelo ID
 void ControleEstoque::removeProduto(int id) {
     if (banco.removeProduto(id)) {
         std::cout << "Produto removido com sucesso!" << std::endl;
@@ -19,6 +22,7 @@ void ControleEstoque::removeProduto(int id) {
     }
 }
 
+// Atualiza um produto no estoque pelo ID e atributo
 void ControleEstoque::atualizaProduto(int id, const std::string& atributo, const std::string& novoValor) {
     std::vector<Produto> produtos = banco.buscaProduto(id);
     if (!produtos.empty()) {
@@ -29,7 +33,7 @@ void ControleEstoque::atualizaProduto(int id, const std::string& atributo, const
         } else if (atributo == "marca") {
             produto.setMarca(novoValor);
         } else if (atributo == "preco") {
-            produto.setPreco(std::stof(novoValor));
+            produto.setPreco(std::stod(novoValor));
         } else if (atributo == "setor") {
             produto.setSetor(novoValor[0]);
         } else if (atributo == "fornecedor") {
@@ -47,6 +51,7 @@ void ControleEstoque::atualizaProduto(int id, const std::string& atributo, const
     }
 }
 
+// Exibe as informações de um produto pelo ID
 void ControleEstoque::exibeProduto(int id) {
     std::vector<Produto> produtos = banco.buscaProduto(id);
     if (!produtos.empty()) {
@@ -63,6 +68,7 @@ void ControleEstoque::exibeProduto(int id) {
     }
 }
 
+// Busca todos os produtos no banco de dados
 std::vector<Produto> ControleEstoque::buscarTodosOsProdutos() const {
     return banco.carregaDados();
 }
