@@ -30,4 +30,4 @@ private:
     bool salvaDados(const std::vector<std::string>& dados);
 };
 
-#endif // BANCODADOS_HP
+#endif // BANCODADOS_HPP
