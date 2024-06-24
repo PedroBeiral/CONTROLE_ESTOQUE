@@ -8,7 +8,7 @@
 class ProdutoPerecivel : public Produto {
 public:
     // Construtor que inicializa um produto perecível com data de vencimento
-    ProdutoPerecivel(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento, const Data& dataVencimento);
+    ProdutoPerecivel(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento, const std::string& dataVencimento);
 
     // Retorna a data de vencimento do produto perecível
     Data getDataVencimento() const;
