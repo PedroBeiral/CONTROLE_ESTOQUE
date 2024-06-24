@@ -9,6 +9,7 @@
 
 using namespace std;
 
+// Função para exibir o menu de opções
 void exibirMenu() {
     cout << "1. Adicionar Produto" << endl;
     cout << "2. Remover Produto" << endl;
@@ -21,7 +22,7 @@ void exibirMenu() {
 }
 
 int main() {
-    ControleEstoque controle("BancoDados.csv");
+    ControleEstoque controle("BancoDados.csv"); // Inicializa o controle de estoque com o arquivo de banco de dados
 
     int opcao;
     int id;
@@ -32,6 +33,7 @@ int main() {
     char setorArmazenamento;
     int dia, mes, ano;
 
+    // Loop para exibir o menu até que o usuário escolha sair
     do {
         exibirMenu();
         cin >> opcao;
