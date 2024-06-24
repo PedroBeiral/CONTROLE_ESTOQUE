@@ -1,47 +1,48 @@
-#include <iostream>
-#include <string>
 #include "Produto.hpp"
-#include "BancoDados.hpp"
 
-using namespace std;
+Produto::Produto(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento) 
+    : _id(id), _nome(nome), _marca(marca), _preco(preco), _fornecedor(fornecedor), _setorArmazenamento(setorArmazenamento) {}
 
-Produto::Produto(int id, string nome, string marca, double preco, string fornecedor, char setorArmazenamento){
-    this->_id = id;
-    this->_nome = nome;
-    this->_marca = marca;
-    this->_preco = preco;
-    this->_fornecedor = fornecedor;
-    this->_setorArmazenamento = setorArmazenamento;
+int Produto::acessoID() const {
+    return _id;
 }
 
-void Produto::atualizarInfo(int id, auto info){
-    bool ver = manipulaAtributos(id, info);
-    if(ver)
-        cout << "Informacao do produto atualizada com exito!" << endl;
-    else    
-        cout << "Erro ao atualizar!" << endl;  
+std::string Produto::acessoNOME() const {
+    return _nome;
 }
 
-int Produto::acessoID(){
-    return this->_id;
+std::string Produto::acessoMARCA() const {
+    return _marca;
 }
 
-string Produto::acessoNOME(){
-    return this->_nome;
+double Produto::acessoPRECO() const {
+    return _preco;
 }
 
-string Produto::acessoMARCA(){
-    return this->_marca;
+std::string Produto::acessoFORNECEDOR() const {
+    return _fornecedor;
 }
 
-double Produto::acessoPRECO(){
-    return this->_preco;
+char Produto::acessoSETOR() const {
+    return _setorArmazenamento;
 }
 
-string Produto::acessoFORNECEDOR(){
-    return this->_fornecedor;
+void Produto::setNome(const std::string& nome) {
+    _nome = nome;
 }
 
-char Produto::acessoSETOR(){
-    return this->_setorArmazenamento;
+void Produto::setMarca(const std::string& marca) {
+    _marca = marca;
+}
+
+void Produto::setPreco(double preco) {
+    _preco = preco;
+}
+
+void Produto::setFornecedor(const std::string& fornecedor) {
+    _fornecedor = fornecedor;
+}
+
+void Produto::setSetor(char setorArmazenamento) {
+    _setorArmazenamento = setorArmazenamento;
 }
