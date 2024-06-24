@@ -6,18 +6,17 @@
 #include <string>
 #include "Produto.hpp"
 
-using namespace std;
+class BancoDados {
+public:
+    BancoDados(const std::string& nomeArquivo);
+    bool adicionaProduto(const Produto& produto);
+    bool removeProduto(int idRemover);
+    std::vector<Produto> buscaProduto(int idBuscar);
 
-class BancoDados{
-
-    public:
-        BancoDados(vector<Produto> dados);
-        bool adicionaBanco();
-        bool removeBanco(int id_remover);
-        //bool manipulaAtributos(int id, auto atributo);
-
-    private:
-        vector<Produto> _dados;    
+private:
+    std::string nomeArquivo;
+    std::vector<std::string> carregaDados();
+    bool salvaDados(const std::vector<std::string>& dados);
 };
 
-#endif
+#endif // BANCODADOS_HPP
