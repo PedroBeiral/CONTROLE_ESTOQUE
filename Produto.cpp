@@ -1,34 +1,48 @@
-#ifndef PRODUTO_HPP
-#define PRODUTO_HPP
+#include "Produto.hpp"
 
-#include <string>
+Produto::Produto(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento) 
+    : _id(id), _nome(nome), _marca(marca), _preco(preco), _fornecedor(fornecedor), _setorArmazenamento(setorArmazenamento) {}
 
-class Produto {
-public:
-    Produto(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento);
+int Produto::acessoID() const {
+    return _id;
+}
 
-    int acessoID() const;
-    std::string acessoNOME() const;
-    std::string acessoMARCA() const;
-    double acessoPRECO() const;
-    std::string acessoFORNECEDOR() const;
-    char acessoSETOR() const;
+std::string Produto::acessoNOME() const {
+    return _nome;
+}
 
-    void setNome(const std::string& nome);
-    void setMarca(const std::string& marca);
-    void setPreco(double preco);
-    void setFornecedor(const std::string& fornecedor);
-    void setSetor(char setorArmazenamento);
+std::string Produto::acessoMARCA() const {
+    return _marca;
+}
 
-private:
-    int _id;
-    std::string _nome;
-    std::string _marca;
-    double _preco;
-    std::string _fornecedor;
-    char _setorArmazenamento;
-};
+double Produto::acessoPRECO() const {
+    return _preco;
+}
 
-#endif // PRODUTO_HPP
+std::string Produto::acessoFORNECEDOR() const {
+    return _fornecedor;
+}
 
+char Produto::acessoSETOR() const {
+    return _setorArmazenamento;
+}
 
+void Produto::setNome(const std::string& nome) {
+    _nome = nome;
+}
+
+void Produto::setMarca(const std::string& marca) {
+    _marca = marca;
+}
+
+void Produto::setPreco(double preco) {
+    _preco = preco;
+}
+
+void Produto::setFornecedor(const std::string& fornecedor) {
+    _fornecedor = fornecedor;
+}
+
+void Produto::setSetor(char setorArmazenamento) {
+    _setorArmazenamento = setorArmazenamento;
+}
