@@ -31,7 +31,7 @@ void ControleEstoque::atualizaProduto(int id, const std::string& atributo, const
         } else if (atributo == "preco") {
             produto.setPreco(std::stof(novoValor));
         } else if (atributo == "setor") {
-            produto.setSetor(novoValor);
+            produto.setSetor(novoValor[0]);
         } else if (atributo == "fornecedor") {
             produto.setFornecedor(novoValor);
         } else {
@@ -61,4 +61,8 @@ void ControleEstoque::exibeProduto(int id) {
     } else {
         std::cout << "Produto não encontrado." << std::endl;
     }
+}
+
+std::vector<Produto> ControleEstoque::buscarTodosOsProdutos() const {
+    return banco.carregaDados();
 }
