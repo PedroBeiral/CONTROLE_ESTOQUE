@@ -1,5 +1,4 @@
 # Sistema de Controle de Estoque para Mercado
-# Sistema de Controle de Estoque para Mercado
 
 Este repositório contém o código-fonte do projeto "Sistema de Controle de Estoque para Mercado", desenvolvido como parte do curso de Programação e Desenvolvimento de Software 2 na UFMG.
 
