@@ -1,0 +1,35 @@
+# Nome do compilador
+CC = gcc
+
+# Opções do compilador
+CFLAGS = -Wall -g
+
+# Arquivos de cabeçalho
+HEADERS = BancoDados.hpp ControleEstoque.hpp Data.hpp Produto.hpp ProdutoPerecivel.hpp
+
+# Arquivos de origem
+SRC = main.cpp BancoDados.cpp ControleEstoque.cpp Data.cpp Produto.cpp ProdutoPerecivel.cpp
+
+# Arquivos objetos (compilados)
+OBJ = main.o BancoDados.o ControleEstoque.o Data.o Produto.o ProdutoPerecivel.o
+
+# Nome do executável
+EXEC = main
+
+# Regra principal (default)
+all: $(EXEC)
+
+# Regra para criar o executável
+$(EXEC): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+# Regra para compilar os arquivos .c em .o
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Limpar arquivos objeto e executável
+clean:
+	rm -f $(OBJ) $(EXEC)
+
+# Phony targets
+.PHONY: all clean
