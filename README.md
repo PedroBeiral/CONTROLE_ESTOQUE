@@ -14,7 +14,6 @@ O Sistema de Controle de Estoque para Mercado é uma aplicação que permite ger
 
 ## Tecnologias Utilizadas
 - Linguagem de Programação: C++11
-- Biblioteca para Testes: Google Test (opcional)
 - Sistema de Controle de Versão: Git
 - Plataforma de Hospedagem de Código: GitHub
 
