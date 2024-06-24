@@ -1,8 +1,10 @@
 #include "Produto.hpp"
 
-Produto::Produto(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento) 
+// Implementação do construtor da classe Produto
+Produto::Produto(int id, const std::string& nome, const std::string& marca, double preco, const std::string& fornecedor, char setorArmazenamento)
     : _id(id), _nome(nome), _marca(marca), _preco(preco), _fornecedor(fornecedor), _setorArmazenamento(setorArmazenamento) {}
 
+// Métodos de acesso (getters)
 int Produto::acessoID() const {
     return _id;
 }
@@ -27,6 +29,7 @@ char Produto::acessoSETOR() const {
     return _setorArmazenamento;
 }
 
+// Métodos de modificação (setters)
 void Produto::setNome(const std::string& nome) {
     _nome = nome;
 }
