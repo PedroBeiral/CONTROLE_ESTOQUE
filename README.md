@@ -501,4 +501,6 @@ int main() {
 
     return 0;
 }
-
+```
+## Documentação Detalhada:
+Para mais detalhes sobre o uso e a estrutura do projeto, veja a [documentação detalhada](https://github.com/PedroBeiral/CONTROLE_ESTOQUE/wiki/DOCUMENTATION).
