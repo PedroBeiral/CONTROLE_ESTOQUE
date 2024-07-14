@@ -75,118 +75,153 @@ run: all
 
 .PHONY: all clean run
 
-Execução
-Após a compilação, você pode executar o programa com o seguinte comando:
+```
+### Execução
 
-sh
-Copiar código
+Após a compilação, você pode executar o programa com o seguinte comando:
 make run
-Estrutura das Classes
-Classe Produto
-Arquivo: Produto.hpp, Produto.cpp
+
+
+## Estrutura das Classes
+
+### Classe `Produto`
+
+Arquivo: `Produto.hpp`, `Produto.cpp`
 
 Classe base que representa um produto no estoque.
 
-Atributos
-std::string nome
-std::string sku
-std::string descricao
-double precoCusto
-double precoVenda
-int quantidade
-int lote
-Date dataRecebimento
-Date dataFabricacao
-Date dataValidade
-std::string categoria
-std::string localizacao
-std::string fornecedor
-std::string unidadeMedida
-double pesoVolume
-std::string notas
-std::string imagem
-Métodos
-Construtores, getters e setters.
-virtual void mostrarDetalhes() const = 0;
-Classe Perecivel
-Arquivo: Perecivel.hpp, Perecivel.cpp
+#### Atributos
 
-Classe derivada de Produto que representa um produto perecível.
+- `std::string nome`
+- `std::string sku`
+- `std::string descricao`
+- `double precoCusto`
+- `double precoVenda`
+- `int quantidade`
+- `int lote`
+- `Date dataRecebimento`
+- `Date dataFabricacao`
+- `Date dataValidade`
+- `std::string categoria`
+- `std::string localizacao`
+- `std::string fornecedor`
+- `std::string unidadeMedida`
+- `double pesoVolume`
+- `std::string notas`
+- `std::string imagem`
 
-Métodos
-Construtor.
-Implementação do método mostrarDetalhes.
-Classe NaoPerecivel
-Arquivo: NaoPerecivel.hpp, NaoPerecivel.cpp
+#### Métodos
 
-Classe derivada de Produto que representa um produto não perecível.
+- Construtores, getters e setters.
+- `virtual void mostrarDetalhes() const = 0;`
 
-Métodos
-Construtor.
-Implementação do método mostrarDetalhes.
-Classe Estoque
-Arquivo: Estoque.hpp, Estoque.cpp
+### Classe `Perecivel`
+
+Arquivo: `Perecivel.hpp`, `Perecivel.cpp`
+
+Classe derivada de `Produto` que representa um produto perecível.
+
+#### Métodos
+
+- Construtor.
+- Implementação do método `mostrarDetalhes`.
+
+### Classe `NaoPerecivel`
+
+Arquivo: `NaoPerecivel.hpp`, `NaoPerecivel.cpp`
+
+Classe derivada de `Produto` que representa um produto não perecível.
+
+#### Métodos
+
+- Construtor.
+- Implementação do método `mostrarDetalhes`.
+
+### Classe `Estoque`
+
+Arquivo: `Estoque.hpp`, `Estoque.cpp`
 
 Classe que gerencia o estoque de produtos.
 
-Atributos
-std::vector<std::unique_ptr<Produto>> produtos
-int limiteMinimo
-Métodos
-Construtor.
-Métodos para adicionar, remover, buscar e listar produtos.
-Métodos para gerar relatórios.
-Classe CSVManager
-Arquivo: CSVManager.hpp, CSVManager.cpp
+#### Atributos
+
+- `std::vector<std::unique_ptr<Produto>> produtos`
+- `int limiteMinimo`
+
+#### Métodos
+
+- Construtor.
+- Métodos para adicionar, remover, buscar e listar produtos.
+- Métodos para gerar relatórios.
+
+### Classe `CSVManager`
+
+Arquivo: `CSVManager.hpp`, `CSVManager.cpp`
 
 Classe que gerencia a leitura e escrita de dados em arquivos CSV.
 
-Métodos
-static void carregarProdutos(const std::string& filename, Estoque& estoque);
-static void salvarProdutos(const std::string& filename, const Estoque& estoque);
-static void carregarMovimentacoes(const std::string& filename, Historico& historico);
-static void salvarMovimentacoes(const std::string& filename, const Historico& historico);
-static void carregarUsuarios(const std::string& filename, std::vector<Usuario>& usuarios);
-static void salvarUsuarios(const std::string& filename, const std::vector<Usuario>& usuarios);
-static void carregarHistorico(const std::string& filename, Historico& historico);
-static void salvarHistorico(const std::string& filename, Historico& historico);
-Classes Relatorio
-Arquivo: Relatorio.hpp, Relatorio.cpp
+#### Métodos
+
+- `static void carregarProdutos(const std::string& filename, Estoque& estoque);`
+- `static void salvarProdutos(const std::string& filename, const Estoque& estoque);`
+- `static void carregarMovimentacoes(const std::string& filename, Historico& historico);`
+- `static void salvarMovimentacoes(const std::string& filename, const Historico& historico);`
+- `static void carregarUsuarios(const std::string& filename, std::vector<Usuario>& usuarios);`
+- `static void salvarUsuarios(const std::string& filename, const std::vector<Usuario>& usuarios);`
+- `static void carregarHistorico(const std::string& filename, Historico& historico);`
+- `static void salvarHistorico(const std::string& filename, Historico& historico);`
+
+### Classes `Relatorio`
+
+Arquivo: `Relatorio.hpp`, `Relatorio.cpp`
 
 Classes que geram diferentes tipos de relatórios do estoque.
 
-Classes
-RelatorioBaixaQuantidade
-RelatorioVencidos
-RelatorioLucroEsperado
-RelatorioPorCategoria
-RelatorioInventarioTotal
-RelatorioVencimentoProximo
-Classe Usuario
-Arquivo: Usuario.hpp, Usuario.cpp
+#### Classes
+
+- `RelatorioBaixaQuantidade`
+- `RelatorioVencidos`
+- `RelatorioLucroEsperado`
+- `RelatorioPorCategoria`
+- `RelatorioInventarioTotal`
+- `RelatorioVencimentoProximo`
+
+### Classe `Usuario`
+
+Arquivo: `Usuario.hpp`, `Usuario.cpp`
 
 Classe que representa um usuário do sistema.
 
-Atributos
-std::string nome
-std::string senha
-bool administrador
-Métodos
-Construtor, getters e setters.
-bool autenticar(const std::string& senha) const;
-Classe Historico
-Arquivo: Historico.hpp, Historico.cpp
+#### Atributos
+
+- `std::string nome`
+- `std::string senha`
+- `bool administrador`
+
+#### Métodos
+
+- Construtor, getters e setters.
+- `bool autenticar(const std::string& senha) const;`
+
+### Classe `Historico`
+
+Arquivo: `Historico.hpp`, `Historico.cpp`
 
 Classe que gerencia o histórico de movimentações do estoque.
 
-Atributos
-std::vector<Registro> registros
-Métodos
-Métodos para adicionar e exibir registros.
-Exemplo de Uso
-main.cpp
-cpp
-Copiar código
+#### Atributos
+
+- `std::vector<Registro> registros`
+
+#### Métodos
+
+- Métodos para adicionar e exibir registros.
+
+## Exemplo de Uso
+
+### `main.cpp`
+
+```cpp
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -466,3 +501,4 @@ int main() {
 
     return 0;
 }
+
