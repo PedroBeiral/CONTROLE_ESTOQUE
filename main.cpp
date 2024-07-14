@@ -17,43 +17,46 @@ void mostrarMenu() {
     std::cout << "2. Remover Produto" << std::endl;
     std::cout << "3. Listar Produtos" << std::endl;
     std::cout << "4. Buscar Produto" << std::endl;
-    std::cout << "5. Gerar Relatórios" << std::endl;
+    std::cout << "5. Gerar Relatorios" << std::endl;
     std::cout << "6. Carregar Estoque de Arquivo CSV" << std::endl;
     std::cout << "7. Salvar Estoque em Arquivo CSV" << std::endl;
-    std::cout << "8. Exibir Histórico" << std::endl;
+    std::cout << "8. Exibir Historico" << std::endl;
     std::cout << "9. Sair" << std::endl;
-    std::cout << "Escolha uma opção: ";
+    std::cout << "Escolha uma opcao: ";
 }
 
 void mostrarMenuRelatorios() {
-    std::cout << "===== Relatórios =====" << std::endl;
-    std::cout << "1. Relatório de Baixa Quantidade" << std::endl;
-    std::cout << "2. Relatório de Produtos Vencidos" << std::endl;
-    std::cout << "3. Relatório de Lucro Esperado" << std::endl;
-    std::cout << "4. Relatório por Categoria" << std::endl;
-    std::cout << "5. Relatório de Inventário Total" << std::endl;
-    std::cout << "6. Relatório de Vencimento Próximo" << std::endl;
-    std::cout << "7. Voltar ao Menu Principal" << std::endl;
-    std::cout << "Escolha uma opção: ";
+    std::cout << "===== Relatorios =====" << std::endl;
+    std::cout << "1. Relatorio de Baixa Quantidade" << std::endl;
+    std::cout << "2. Relatorio de Produtos Vencidos" << std::endl;
+    std::cout << "3. Relatorio de Lucro Esperado" << std::endl;
+    std::cout << "4. Relatorio por Categoria" << std::endl;
+    std::cout << "5. Relatorio de Inventario Total" << std::endl;
+    std::cout << "6. Relatorio de Vencimento Proximo" << std::endl;
+    std::cout << "7. Voltar ao Menu " << std::endl;
+    std::cout << "Escolha uma opcao: ";
+}
+
+void pausarParaMenu() {
+    std::cout << "\nPressione Enter para voltar ao menu principal...";
+    std::cin.ignore();
+    std::cin.get();
+    system("cls"); 
 }
 
 int main() {
-    try {
-        std::locale::global(std::locale("")); // Definir locale para o padrão do sistema
-    } catch (const std::runtime_error& e) {
-        std::cerr << "Erro ao configurar locale: " << e.what() << std::endl;
-        return 1;
-    }
+    setlocale(LC_ALL, "en_US.UTF-8"); // Configura o locale para evitar problemas com acentuação
 
-    Estoque estoque(5);
+    Estoque estoque(10);
     Historico historico;
+
     std::vector<Usuario> usuarios = {
         Usuario("admin", "admin123", true),
         Usuario("user", "user123", false)
     };
 
     std::string nomeUsuario, senha;
-    std::cout << "Usuário: ";
+    std::cout << "Usuario: ";
     std::cin >> nomeUsuario;
     std::cout << "Senha: ";
     std::cin >> senha;
@@ -67,7 +70,7 @@ int main() {
     }
 
     if (!usuarioLogado) {
-        std::cout << "Usuário ou senha inválidos!" << std::endl;
+        std::cout << "Usuario ou senha invalidos!" << std::endl;
         return 1;
     }
 
@@ -82,7 +85,8 @@ int main() {
         switch (opcao) {
         case 1: {
             if (!usuarioLogado->isAdmin()) {
-                std::cout << "Permissão negada. Somente administradores podem adicionar produtos." << std::endl;
+                std::cout << "Permissao negada. Somente administradores podem adicionar produtos." << std::endl;
+                pausarParaMenu();
                 break;
             }
 
@@ -97,11 +101,11 @@ int main() {
             std::getline(std::cin, nome);
             std::cout << "SKU: ";
             std::getline(std::cin, sku);
-            std::cout << "Descrição: ";
+            std::cout << "Descricao: ";
             std::getline(std::cin, descricao);
-            std::cout << "Preço de Custo: ";
+            std::cout << "Preco de Custo: ";
             std::cin >> precoCusto;
-            std::cout << "Preço de Venda: ";
+            std::cout << "Preco de Venda: ";
             std::cin >> precoVenda;
             std::cout << "Quantidade: ";
             std::cin >> quantidade;
@@ -110,13 +114,13 @@ int main() {
             std::cin.ignore();  // Ignorar nova linha após a entrada de um número
             std::cout << "Data de Recebimento (DD/MM/YYYY): ";
             std::getline(std::cin, dataRecebimentoStr);
-            std::cout << "Data de Fabricação (DD/MM/YYYY): ";
+            std::cout << "Data de Fabricacao (DD/MM/YYYY): ";
             std::getline(std::cin, dataFabricacaoStr);
             std::cout << "Data de Validade (DD/MM/YYYY): ";
             std::getline(std::cin, dataValidadeStr);
             std::cout << "Categoria: ";
             std::getline(std::cin, categoria);
-            std::cout << "Localização: ";
+            std::cout << "Localizacao: ";
             std::getline(std::cin, localizacao);
             std::cout << "Fornecedor: ";
             std::getline(std::cin, fornecedor);
@@ -137,20 +141,21 @@ int main() {
             if (tipo == "Perecivel") {
                 auto produto = std::make_unique<Perecivel>(nome, sku, descricao, precoCusto, precoVenda, quantidade, lote, dataRecebimento, dataFabricacao, dataValidade, categoria, localizacao, fornecedor, unidadeMedida, pesoVolume, notas, imagem);
                 estoque.adicionarProduto(std::move(produto));
-                historico.adicionarRegistro("Adicionar Produto", "Adicionado produto perecível: " + nome);
+                historico.adicionarRegistro("Adicionar Produto", "Adicionado produto perecivel: " + nome);
             } else if (tipo == "NaoPerecivel") {
                 auto produto = std::make_unique<NaoPerecivel>(nome, sku, descricao, precoCusto, precoVenda, quantidade, lote, dataRecebimento, dataFabricacao, dataValidade, categoria, localizacao, fornecedor, unidadeMedida, pesoVolume, notas, imagem);
                 estoque.adicionarProduto(std::move(produto));
-                historico.adicionarRegistro("Adicionar Produto", "Adicionado produto não perecível: " + nome);
+                historico.adicionarRegistro("Adicionar Produto", "Adicionado produto nao perecivel: " + nome);
             } else {
-                std::cout << "Tipo de produto inválido." << std::endl;
+                std::cout << "Tipo de produto invalido." << std::endl;
             }
-
+            pausarParaMenu();
             break;
         }
         case 2: {
             if (!usuarioLogado->isAdmin()) {
-                std::cout << "Permissão negada. Somente administradores podem remover produtos." << std::endl;
+                std::cout << "Permissao negada. Somente administradores podem remover produtos." << std::endl;
+                pausarParaMenu();
                 break;
             }
 
@@ -164,11 +169,13 @@ int main() {
             } catch (const std::exception& e) {
                 std::cout << "Erro: " << e.what() << std::endl;
             }
+            pausarParaMenu();
             break;
         }
         case 3: {
             std::cout << "Produtos no estoque:" << std::endl;
             estoque.listarProdutos();
+            pausarParaMenu();
             break;
         }
         case 4: {
@@ -179,8 +186,9 @@ int main() {
             if (produto) {
                 produto->mostrarDetalhes();
             } else {
-                std::cout << "Produto não encontrado." << std::endl;
+                std::cout << "Produto nao encontrado." << std::endl;
             }
+            pausarParaMenu();
             break;
         }
         case 5: {
@@ -194,42 +202,47 @@ int main() {
                 case 1: {
                     RelatorioBaixaQuantidade relatorio;
                     relatorio.gerar(estoque);
+                    pausarParaMenu();
                     break;
                 }
                 case 2: {
                     RelatorioVencidos relatorio;
                     relatorio.gerar(estoque);
+                    pausarParaMenu();
                     break;
                 }
                 case 3: {
                     RelatorioLucroEsperado relatorio;
                     relatorio.gerar(estoque);
+                    pausarParaMenu();
                     break;
                 }
                 case 4: {
                     RelatorioPorCategoria relatorio;
                     relatorio.gerar(estoque);
+                    pausarParaMenu();
                     break;
                 }
                 case 5: {
                     RelatorioInventarioTotal relatorio;
                     relatorio.gerar(estoque);
+                    pausarParaMenu();
                     break;
                 }
                 case 6: {
                     int dias;
-                    std::cout << "Digite o número de dias para o vencimento próximo: ";
+                    std::cout << "Digite o numero de dias para verificar validade proxima: ";
                     std::cin >> dias;
                     RelatorioVencimentoProximo relatorio(dias);
                     relatorio.gerar(estoque);
+                    pausarParaMenu();
                     break;
                 }
                 case 7:
-                    std::cout << "Voltando ao menu principal..." << std::endl;
+                    // Voltar ao menu principal
                     break;
                 default:
-                    std::cout << "Opção inválida. Tente novamente." << std::endl;
-                    break;
+                    std::cout << "Opcao invalida." << std::endl;
                 }
             } while (opcaoRelatorio != 7);
             break;
@@ -245,6 +258,7 @@ int main() {
             } catch (const std::exception& e) {
                 std::cout << "Erro: " << e.what() << std::endl;
             }
+            pausarParaMenu();
             break;
         }
         case 7: {
@@ -258,21 +272,22 @@ int main() {
             } catch (const std::exception& e) {
                 std::cout << "Erro: " << e.what() << std::endl;
             }
+            pausarParaMenu();
             break;
         }
         case 8: {
-            std::cout << "Histórico de Movimentações:" << std::endl;
+            std::cout << "Historico de movimentacoes:" << std::endl;
             historico.exibirHistorico();
+            pausarParaMenu();
             break;
         }
         case 9:
             std::cout << "Saindo..." << std::endl;
             break;
         default:
-            std::cout << "Opção inválida. Tente novamente." << std::endl;
-            break;
+            std::cout << "Opcao invalida." << std::endl;
+            pausarParaMenu();
         }
-
     } while (opcao != 9);
 
     return 0;
