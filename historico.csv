@@ -1,0 +1,3 @@
+data,acao,detalhes,usuario
+01/07/2023,Adicionar Produto,Adicionado produto perecível: Leite,admin
+01/07/2023,Remover Produto,Removido produto: Leite,user
